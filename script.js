@@ -35,7 +35,7 @@ const draw = () => {
 
   // drawing code
   drawBall();
-  drawPaddle()
+  drawPaddle();
 
   //move shape
   x += dx;
@@ -45,9 +45,17 @@ const draw = () => {
   // y + dy < ballRadius || y + dy > canvas.height - ballRadius
   //   ? (dy = -dy)
   //   : null;
-  y + dy < ballRadius || y + dy > canvas.height - ballRadius
-    ? (dy = -dy)
-    : null;
+  if (y + dy < ballRadius) {
+    dy = -dy;
+  } else if (y + dy > canvas.height - ballRadius) {
+    if (x > paddleX && x < paddleX + paddleWidth) {
+      dy = -dy;
+    } else {
+      alert("GAME OVER");
+      document.location.reload();
+      clearInterval(interval);
+    }
+  }
 
   x + dx < ballRadius || x + dx > canvas.width - ballRadius ? (dx = -dx) : null;
 
@@ -56,8 +64,7 @@ const draw = () => {
     if (paddleX + paddleWidth > canvas.width) {
       paddleX = canvas.width - paddleWidth;
     }
-  }
-  else if (leftPressed) {
+  } else if (leftPressed) {
     paddleX -= 7;
     if (paddleX < 0) {
       paddleX = 0;
@@ -84,4 +91,4 @@ const keyUpHandler = (e) => {
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
-setInterval(draw, 10);
+let interval = setInterval(draw, 10);
