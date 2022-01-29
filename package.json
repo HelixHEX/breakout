@@ -1,0 +1,16 @@
+{
+  "name": "breakout",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/HelixHEX/breakout.git",
+  "author": "Elias <e.wambugu192@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "^2.25.2"
+  },
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint"
+  }
+}
